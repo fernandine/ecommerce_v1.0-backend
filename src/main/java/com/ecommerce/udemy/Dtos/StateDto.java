@@ -9,10 +9,10 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class StateDto implements Serializable {
 
     private Long id;

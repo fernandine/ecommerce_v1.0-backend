@@ -8,10 +8,10 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductCategoryDto implements Serializable {
 
     private Long id;

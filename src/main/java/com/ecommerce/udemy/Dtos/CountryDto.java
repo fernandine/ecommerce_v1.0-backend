@@ -10,10 +10,10 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CountryDto implements Serializable {
 
     private Long id;

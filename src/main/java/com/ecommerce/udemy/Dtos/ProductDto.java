@@ -9,10 +9,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductDto implements Serializable {
 
     private Long id;

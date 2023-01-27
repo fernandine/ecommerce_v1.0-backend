@@ -1,24 +1,16 @@
 package com.ecommerce.udemy.entities;
 
-import lombok.*;
-
-import javax.persistence.*;
-import java.util.List;
-
 @Entity
-@Table(name="country")
+@Table(name = "roles")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Country implements Serializable {
+public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String code;
     private String name;
-    @OneToMany(mappedBy="country")
-    private List<State> states;
 }
