@@ -1,6 +1,9 @@
 package com.ecommerce.udemy.entities;
-
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
+import lombok.*;
+
 
 @Entity
 @Table(name = "users")

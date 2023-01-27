@@ -1,14 +1,12 @@
 package com.ecommerce.udemy.Dtos;
 
 import com.ecommerce.udemy.entities.Country;
-import com.ecommerce.udemy.entities.State;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter

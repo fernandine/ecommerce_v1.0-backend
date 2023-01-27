@@ -11,9 +11,9 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDto implements Serializable {
+public class PaymentInfoDto implements Serializable {
 
-    private String firstName;
-    private String lastName;
-    private String email;
+    private int amount;
+    private String currency;
+    private String receiptEmail;
 }

@@ -1,5 +1,11 @@
 package com.ecommerce.udemy.entities;
 
+import lombok.*;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+
 @Entity
 @Table(name = "roles")
 @Getter

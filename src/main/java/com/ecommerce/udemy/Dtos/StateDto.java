@@ -1,6 +1,5 @@
 package com.ecommerce.udemy.Dtos;
 
-import com.ecommerce.udemy.entities.Country;
 import com.ecommerce.udemy.entities.State;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

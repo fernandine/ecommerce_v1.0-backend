@@ -1,6 +1,11 @@
 package com.ecommerce.udemy.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import lombok.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "customer")

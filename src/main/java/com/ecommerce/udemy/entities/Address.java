@@ -1,6 +1,9 @@
 package com.ecommerce.udemy.entities;
 
-import javax.persistence.Column;
+import lombok.*;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "address")

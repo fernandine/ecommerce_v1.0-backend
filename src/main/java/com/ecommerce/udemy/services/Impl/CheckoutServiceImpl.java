@@ -1,5 +1,22 @@
 package com.ecommerce.udemy.services.Impl;
 
+import com.ecommerce.udemy.Dtos.PaymentInfoDto;
+import com.ecommerce.udemy.Dtos.PurchaseDto;
+import com.ecommerce.udemy.Dtos.PurchaseResponseDto;
+import com.ecommerce.udemy.entities.Customer;
+import com.ecommerce.udemy.entities.Order;
+import com.ecommerce.udemy.entities.OrderItem;
+import com.ecommerce.udemy.repositories.CustomerRepository;
+import com.ecommerce.udemy.services.CheckoutService;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.*;
+
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
     private final CustomerRepository customerRepository;
@@ -12,7 +29,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     @Override
     @Transactional
-    public PurchaseResponseDTO placeOrder(PurchaseDTO purchase) {
+    public PurchaseResponseDto placeOrder(PurchaseDto purchase) {
         // retrieve the order
         Order order = purchase.getOrder();
         // generate tracking nuber
@@ -44,11 +61,11 @@ public class CheckoutServiceImpl implements CheckoutService {
         customerRepository.save(customer);
 
         //return a response
-        return new PurchaseResponseDTO(orderTrackingNumber);
+        return new PurchaseResponseDto(orderTrackingNumber);
     }
 
     @Override
-    public PaymentIntent createPaymentIntent(PaymentInfoDTO paymentInfoDTO) throws StripeException {
+    public PaymentIntent createPaymentIntent(PaymentInfoDto paymentInfoDTO) throws StripeException {
         List<String> paymentMethodTypes = new ArrayList<>();
         paymentMethodTypes.add("card");
 
