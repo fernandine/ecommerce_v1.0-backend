@@ -1,5 +1,6 @@
 package com.ecommerce.udemy.Dtos;
 
+import com.ecommerce.udemy.entities.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,11 @@ public class OrderDto implements Serializable {
     private Integer totalQuantity;
     private String orderTrackingNumber;
     private Date dateCreated;
+
+    public OrderDto(Order entity) {
+        totalPrice = entity.getTotalPrice();
+        totalQuantity = entity.getTotalQuantity();
+        orderTrackingNumber = entity.getOrderTrackingNumber();
+        dateCreated = entity.getDateCreated();
+    }
 }

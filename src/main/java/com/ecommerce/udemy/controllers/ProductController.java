@@ -1,7 +1,6 @@
 package com.ecommerce.udemy.controllers;
 
 import com.ecommerce.udemy.Dtos.ProductDto;
-import com.ecommerce.udemy.entities.Product;
 import com.ecommerce.udemy.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/products")
+@RequestMapping(value = "/products")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProductController {
 
@@ -42,4 +41,5 @@ public class ProductController {
     public ResponseEntity<ProductDto> searchById(@PathVariable Long id) {
         return ResponseEntity.ok().body(service.navigateByUrl(id));
     }
+
 }

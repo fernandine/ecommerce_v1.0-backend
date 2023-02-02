@@ -8,10 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping(value = "/api/categories")
+@RequestMapping(value = "/categories")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProductCategoryController {
 
@@ -19,8 +17,8 @@ public class ProductCategoryController {
     private ProductCategoryService service;
 
     @GetMapping
-    public ResponseEntity<Page<ProductCategoryDto>> findAll(Pageable pageable) {
-        Page<ProductCategoryDto> list = service.findAllPaged(pageable);
-        return ResponseEntity.ok().body(list);
+    public ResponseEntity<Page<ProductCategoryDto>> findAllPaged(Pageable pageable) {
+        Page<ProductCategoryDto> page = service.findAllPaged(pageable);
+        return ResponseEntity.ok().body(page);
     }
 }
