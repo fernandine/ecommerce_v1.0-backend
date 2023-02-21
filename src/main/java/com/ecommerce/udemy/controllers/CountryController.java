@@ -1,6 +1,6 @@
 package com.ecommerce.udemy.controllers;
 
-import com.ecommerce.udemy.Dtos.CountryDto;
+import com.ecommerce.udemy.dtos.CountryDto;
 import com.ecommerce.udemy.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

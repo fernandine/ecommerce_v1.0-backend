@@ -1,6 +1,6 @@
 package com.ecommerce.udemy.services;
 
-import com.ecommerce.udemy.Dtos.CountryDto;
+import com.ecommerce.udemy.dtos.CountryDto;
 import com.ecommerce.udemy.entities.Country;
 import com.ecommerce.udemy.repositories.CountryRepository;
 import com.ecommerce.udemy.services.exceptions.ResourceNotFoundException;

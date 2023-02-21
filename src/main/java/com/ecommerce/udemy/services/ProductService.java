@@ -1,6 +1,6 @@
 package com.ecommerce.udemy.services;
 
-import com.ecommerce.udemy.Dtos.ProductDto;
+import com.ecommerce.udemy.dtos.ProductDto;
 import com.ecommerce.udemy.entities.Product;
 import com.ecommerce.udemy.entities.ProductCategory;
 import com.ecommerce.udemy.repositories.ProductCategoryRepository;

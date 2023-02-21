@@ -1,6 +1,6 @@
 package com.ecommerce.udemy.controllers;
 
-import com.ecommerce.udemy.Dtos.ProductDto;
+import com.ecommerce.udemy.dtos.ProductDto;
 import com.ecommerce.udemy.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

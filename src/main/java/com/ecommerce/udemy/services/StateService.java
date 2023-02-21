@@ -1,6 +1,6 @@
 package com.ecommerce.udemy.services;
 
-import com.ecommerce.udemy.Dtos.StateDto;
+import com.ecommerce.udemy.dtos.StateDto;
 import com.ecommerce.udemy.entities.State;
 import com.ecommerce.udemy.repositories.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;

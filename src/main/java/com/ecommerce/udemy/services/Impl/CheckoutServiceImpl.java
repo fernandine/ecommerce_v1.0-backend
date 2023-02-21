@@ -1,8 +1,8 @@
 package com.ecommerce.udemy.services.Impl;
 
-import com.ecommerce.udemy.Dtos.PaymentInfoDto;
-import com.ecommerce.udemy.Dtos.PurchaseDto;
-import com.ecommerce.udemy.Dtos.PurchaseResponseDto;
+import com.ecommerce.udemy.dtos.PaymentInfoDto;
+import com.ecommerce.udemy.dtos.PurchaseDto;
+import com.ecommerce.udemy.dtos.PurchaseResponseDto;
 import com.ecommerce.udemy.entities.Customer;
 import com.ecommerce.udemy.entities.Order;
 import com.ecommerce.udemy.entities.OrderItem;

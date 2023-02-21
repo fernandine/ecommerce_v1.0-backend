@@ -1,6 +1,6 @@
 package com.ecommerce.udemy.services;
 
-import com.ecommerce.udemy.Dtos.OrderDto;
+import com.ecommerce.udemy.dtos.OrderDto;
 import com.ecommerce.udemy.entities.Order;
 import com.ecommerce.udemy.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

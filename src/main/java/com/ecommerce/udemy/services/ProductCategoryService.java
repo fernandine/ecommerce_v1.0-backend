@@ -1,6 +1,6 @@
 package com.ecommerce.udemy.services;
 
-import com.ecommerce.udemy.Dtos.ProductCategoryDto;
+import com.ecommerce.udemy.dtos.ProductCategoryDto;
 import com.ecommerce.udemy.entities.ProductCategory;
 import com.ecommerce.udemy.repositories.ProductCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

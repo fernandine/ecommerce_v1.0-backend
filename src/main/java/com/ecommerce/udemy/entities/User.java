@@ -1,71 +1,88 @@
 package com.ecommerce.udemy.entities;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
-
-import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 
 @Entity
-@Table(name = "tb_user")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-    public class User implements UserDetails, Serializable {
-        private static final long serialVersionUID = 1L;
+@Table(name = "tb_user",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")
+        })
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        private String firstName;
-        private String lastName;
-        @Column(unique = true) //Não deixa entrar com email repetido
-        private String email;
-        private String password;
+    @NotBlank
+    @Size(max = 20)
+    private String username;
 
-        @ManyToMany(fetch = FetchType.EAGER) //carregar os perfis do usuario
-        @JoinTable(name = "tb_user_role",
-                joinColumns = @JoinColumn(name = "user_id"),
-                inverseJoinColumns = @JoinColumn(name = "role_id"))
-        private Set<Role> roles = new HashSet<>();
+    @NotBlank
+    @Size(max = 50)
+    @Email
+    private String email;
 
-        @Override
-        public Collection<? extends GrantedAuthority> getAuthorities() {
-            return roles.stream().map(role -> new SimpleGrantedAuthority(role.getAuthority()))
-                    .collect(Collectors.toList());
-        }
+    @NotBlank
+    @Size(max = 120)
+    private String password;
 
-        @Override
-        public String getUsername() {
-            return email;
-        }
+    @ManyToMany
+    @JoinTable(name = "tb_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
-        @Override
-        public boolean isAccountNonExpired() {
-            return true;
-        }
-
-        @Override
-        public boolean isAccountNonLocked() {
-            return true;
-        }
-
-        @Override
-        public boolean isCredentialsNonExpired() {
-            return true;
-        }
-
-        @Override
-        public boolean isEnabled() {
-            return true;
-        }
-
+    public User() {
     }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+}

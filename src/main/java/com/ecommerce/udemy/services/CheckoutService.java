@@ -1,8 +1,8 @@
 package com.ecommerce.udemy.services;
 
-import com.ecommerce.udemy.Dtos.PaymentInfoDto;
-import com.ecommerce.udemy.Dtos.PurchaseDto;
-import com.ecommerce.udemy.Dtos.PurchaseResponseDto;
+import com.ecommerce.udemy.dtos.PaymentInfoDto;
+import com.ecommerce.udemy.dtos.PurchaseDto;
+import com.ecommerce.udemy.dtos.PurchaseResponseDto;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 

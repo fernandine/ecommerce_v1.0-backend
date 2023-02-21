@@ -1,7 +1,6 @@
 package com.ecommerce.udemy.controllers;
 
-import com.ecommerce.udemy.Dtos.StateDto;
-import com.ecommerce.udemy.services.CountryService;
+import com.ecommerce.udemy.dtos.StateDto;
 import com.ecommerce.udemy.services.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
