@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class ProductCategory implements Serializable {
+public class Category implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class ProductCategory implements Serializable {
     private Long id;
 
     @Column(name = "category_name")
-    private String categoryName;
+    private String name;
 
     @OneToMany(mappedBy = "category")
     private Set<Product> products;

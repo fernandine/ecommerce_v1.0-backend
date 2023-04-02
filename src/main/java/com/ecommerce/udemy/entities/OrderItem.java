@@ -7,11 +7,9 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name="order_item")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class OrderItem implements Serializable {
 
     @Id

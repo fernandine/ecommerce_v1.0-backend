@@ -26,7 +26,7 @@ public class Product extends RepresentationModel<Product> implements Serializabl
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    private ProductCategory category;
+    private Category category;
 
     @Column(name = "sku")
     private String sku;
