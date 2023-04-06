@@ -1,11 +1,15 @@
 package com.ecommerce.udemy.dtos;
 
+import com.ecommerce.udemy.entities.Address;
 import com.ecommerce.udemy.entities.User;
 
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class UserDto implements Serializable {
@@ -21,6 +25,8 @@ public class UserDto implements Serializable {
     private String email;
 
     Set<RoleDto> roles = new HashSet<>();
+
+    Set<AddressDto> addressList = new HashSet<>();
 
     public UserDto() {
     }
@@ -38,6 +44,7 @@ public class UserDto implements Serializable {
         lastName = entity.getLastName();
         email = entity.getEmail();
         entity.getRoles().forEach(role -> this.roles.add(new RoleDto(role)));
+        entity.getAddressList().forEach(address -> this.addressList.add(new AddressDto(address)));
     }
 
     public Long getId() {
@@ -74,5 +81,17 @@ public class UserDto implements Serializable {
 
     public Set<RoleDto> getRoles() {
         return roles;
+    }
+
+    public void setRoles(Set<RoleDto> roles) {
+        this.roles = roles;
+    }
+
+    public Set<AddressDto> getAddressList() {
+        return addressList;
+    }
+
+    public void setAddressList(Set<AddressDto> addressList) {
+        this.addressList = addressList;
     }
 }

@@ -1,11 +1,10 @@
 package com.ecommerce.udemy.services;
 
-import com.ecommerce.udemy.dtos.RoleDto;
-import com.ecommerce.udemy.dtos.UserDto;
-import com.ecommerce.udemy.dtos.UserInsertDto;
-import com.ecommerce.udemy.dtos.UserUpdateDto;
+import com.ecommerce.udemy.dtos.*;
+import com.ecommerce.udemy.entities.Address;
 import com.ecommerce.udemy.entities.Role;
 import com.ecommerce.udemy.entities.User;
+import com.ecommerce.udemy.repositories.AddressRepository;
 import com.ecommerce.udemy.repositories.RoleRepository;
 import com.ecommerce.udemy.repositories.UserRepository;
 import com.ecommerce.udemy.services.exceptions.DatabaseException;
@@ -43,6 +42,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private AddressRepository addressRepository;
+
     @Transactional(readOnly = true)
     public List<UserDto> findAll() {
         List<User> list = repository.findAll();
@@ -68,7 +70,7 @@ public class UserService implements UserDetailsService {
     @Transactional
     public UserDto update(Long id, UserUpdateDto dto) {
         try {
-            User entity = repository.getOne(id);
+            User entity = repository.getReferenceById(id);
             copyDtoToEntity(dto, entity);
             entity = repository.save(entity);
             return new UserDto(entity);
@@ -98,9 +100,15 @@ public class UserService implements UserDetailsService {
 
         entity.getRoles().clear();
         for (RoleDto roleDto : dto.getRoles()) {
-            Role role = roleRepository.getOne(roleDto.getId());
+            Role role = roleRepository.getReferenceById(roleDto.getId());
             entity.getRoles().add(role);
         }
+        entity.getAddressList().clear();
+        for (AddressDto p : dto.getAddressList()) {
+            Address address = addressRepository.getReferenceById(p.getId());
+            entity.getAddressList().add(address);
+        }
+
     }
 
     @Override

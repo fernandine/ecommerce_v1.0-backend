@@ -1,5 +1,6 @@
 package com.ecommerce.udemy.dtos;
 
+import com.ecommerce.udemy.entities.Address;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,9 +14,21 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class AddressDto implements Serializable {
 
-    private String city;
-    private String country;
-    private String state;
-    private String street;
-    private String zipCode;
+    private Long id;
+    private String cep;
+    private String logradouro;
+    private String complemento;
+    private String bairro;
+    private String localidade;
+    private String uf;
+
+    public AddressDto(Address entity) {
+        id = entity.getId();
+        cep = entity.getCep();
+        logradouro = entity.getLogradouro();
+        complemento = entity.getComplemento();
+        bairro = entity.getBairro();
+        localidade = entity.getLocalidade();
+        uf = entity.getUf();
+    }
 }

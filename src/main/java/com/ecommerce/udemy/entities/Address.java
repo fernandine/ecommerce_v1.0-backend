@@ -6,20 +6,22 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "address")
-@Getter
-@Setter
+@Table(name = "tb_address")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String city;
-    private String country;
-    private String state;
-    private String street;
-    @Column(name = "zip_code")
-    private String zipCode;
-    }
+    private String cep;
+    private String logradouro;
+    private String complemento;
+    private String bairro;
+    private String localidade;
+    private String uf;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+}

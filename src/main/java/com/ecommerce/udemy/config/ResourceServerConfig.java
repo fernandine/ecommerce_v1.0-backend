@@ -41,7 +41,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 			"/h2-console/**",
 			"/register/**",
 			"/users/**",
-			"/account/**"
+			"/account/**",
+			"/adresses/**"
 	};
 	
 	//private static final String[] OPERATOR = { };
