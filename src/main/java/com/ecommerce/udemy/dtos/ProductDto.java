@@ -21,7 +21,7 @@ public class ProductDto implements Serializable {
     private String description;
     private BigDecimal unitPrice;
     private String imageUrl;
-    private boolean active;
+    private boolean favorite;
     private int unitsInStock;
     private Date dateCreated;
     private Date lastUpdated;
@@ -34,7 +34,7 @@ public class ProductDto implements Serializable {
         description = entity.getDescription();
         unitPrice = entity.getUnitPrice();
         imageUrl = entity.getImageUrl();
-        active = entity.isActive();
+        favorite = entity.isFavorite();
         unitsInStock = entity.getUnitsInStock();
         dateCreated = entity.getDateCreated();
         lastUpdated = entity.getLastUpdated();

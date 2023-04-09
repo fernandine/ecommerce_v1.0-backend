@@ -26,7 +26,7 @@ public class UserDto implements Serializable {
 
     Set<RoleDto> roles = new HashSet<>();
 
-    Set<AddressDto> addressList = new HashSet<>();
+//    Set<AddressDto> addressList = new HashSet<>();
 
     public UserDto() {
     }
@@ -44,7 +44,7 @@ public class UserDto implements Serializable {
         lastName = entity.getLastName();
         email = entity.getEmail();
         entity.getRoles().forEach(role -> this.roles.add(new RoleDto(role)));
-        entity.getAddressList().forEach(address -> this.addressList.add(new AddressDto(address)));
+        //entity.getAddressList().forEach(address -> this.addressList.add(new AddressDto(address)));
     }
 
     public Long getId() {
@@ -87,11 +87,11 @@ public class UserDto implements Serializable {
         this.roles = roles;
     }
 
-    public Set<AddressDto> getAddressList() {
-        return addressList;
-    }
-
-    public void setAddressList(Set<AddressDto> addressList) {
-        this.addressList = addressList;
-    }
+//    public Set<AddressDto> getAddressList() {
+//        return addressList;
+//    }
+//
+//    public void setAddressList(Set<AddressDto> addressList) {
+//        this.addressList = addressList;
+//    }
 }

@@ -43,8 +43,8 @@ public class Product extends RepresentationModel<Product> implements Serializabl
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(name = "active")
-    private boolean active;
+    @Column(name = "favorite")
+    private boolean favorite;
 
     @Column(name = "units_in_stock")
     private int unitsInStock;

@@ -26,6 +26,13 @@ public class ProductController {
         return ResponseEntity.ok().body(list);
     }
 
+    @GetMapping("/find")
+    public ResponseEntity<List<ProductDto>> find(
+            @RequestParam(value = "notFavorite", defaultValue = "false") Boolean favorite) {
+        List<ProductDto> list = service.findByFavorite(favorite);
+        return ResponseEntity.ok().body(list);
+    }
+
     @GetMapping("/search")
     public ResponseEntity<Page<ProductDto>> findByName(
             @RequestParam("name") String name,

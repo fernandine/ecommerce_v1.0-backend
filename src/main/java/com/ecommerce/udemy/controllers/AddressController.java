@@ -21,16 +21,32 @@ public class AddressController {
     @Autowired
     private ViaCepService viaCepService;
 
-    @GetMapping("/{cep}")
+    //busca todos os endereços
+    @GetMapping
+    public ResponseEntity<List<AddressDto>> findAll() {
+        List<AddressDto> list = service.findAll();
+        return ResponseEntity.ok().body(list);
+    }
+
+    //consulta por cep
+    @GetMapping("/viacep/{cep}")
     public ResponseEntity<AddressDto> consultaCep(@PathVariable String cep) {
         AddressDto dto = viaCepService.findByCep(cep);
         return ResponseEntity.ok().body(dto);
     }
 
-    @GetMapping
-    public ResponseEntity<List<AddressDto>> findAll() {
-        List<AddressDto> list = service.findAll();
+    //busca endereco pelo id do usuario => /find?userId=2
+    @GetMapping("/find")
+    public ResponseEntity<List<AddressDto>> getByUserId(@RequestParam("userId") Long userId) {
+        List<AddressDto> list = service.getByUserId(userId);
         return ResponseEntity.ok().body(list);
+    }
+
+    //busca endereco por id
+    @GetMapping("/{id}")
+    public ResponseEntity<AddressDto> findById(@PathVariable Long id) {
+        AddressDto dto = service.findById(id);
+        return ResponseEntity.ok().body(dto);
     }
 
     @PostMapping

@@ -37,6 +37,12 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
+    public List<ProductDto> findByFavorite(boolean notFavorite) {
+        List<Product> list = repository.find(notFavorite);
+        return list.stream().map(ProductDto::new).collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
     public ProductDto navigateByUrl(Long id) {
         Optional<Product> obj = repository.findById(id);
         Product product = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
@@ -96,7 +102,7 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setImageUrl(dto.getImageUrl());
         entity.setSku(dto.getSku());
-        entity.setActive(dto.isActive());
+        entity.setFavorite(dto.isFavorite());
         entity.setDateCreated(dto.getDateCreated());
         entity.setUnitsInStock(dto.getUnitsInStock());
         entity.setUnitPrice(dto.getUnitPrice());

@@ -22,6 +22,8 @@ public class AddressDto implements Serializable {
     private String localidade;
     private String uf;
 
+    private Long userId;
+
     public AddressDto(Address entity) {
         id = entity.getId();
         cep = entity.getCep();
@@ -30,5 +32,6 @@ public class AddressDto implements Serializable {
         bairro = entity.getBairro();
         localidade = entity.getLocalidade();
         uf = entity.getUf();
+        userId = entity.getUser().getId();
     }
 }
