@@ -1,10 +1,9 @@
 package com.ecommerce.udemy.repositories;
 
-import com.ecommerce.udemy.entities.OrderItem;
+import com.ecommerce.udemy.entities.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
-
+public interface PaymentRepository extends JpaRepository<Payment, Long> {
 }

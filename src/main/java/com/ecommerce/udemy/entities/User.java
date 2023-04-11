@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -24,10 +25,14 @@ public class User implements UserDetails, Serializable {
     private Long id;
     private String firstName;
     private String lastName;
-
+    private String cpf;
+    private String phone;
+    @Column(name = "birth_day")
+    private LocalDate birthDay;
     @Column(unique = true)
     private String email;
     private String password;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tb_user_role",
             joinColumns = @JoinColumn(name = "user_id"),

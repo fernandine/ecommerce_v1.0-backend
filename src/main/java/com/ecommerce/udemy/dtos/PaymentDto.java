@@ -5,15 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
+import java.time.Instant;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDto implements Serializable {
-
-    private String firstName;
-    private String lastName;
-    private String email;
+public class PaymentDto {
+    private Long id;
+    private Instant moment;
 }

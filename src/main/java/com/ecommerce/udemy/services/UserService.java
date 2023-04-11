@@ -24,6 +24,11 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -71,6 +76,7 @@ public class UserService implements UserDetailsService {
     public UserDto update(Long id, UserUpdateDto dto) {
         try {
             User entity = repository.getReferenceById(id);
+
             copyDtoToEntity(dto, entity);
             entity = repository.save(entity);
             return new UserDto(entity);
@@ -97,12 +103,17 @@ public class UserService implements UserDetailsService {
         entity.setFirstName(dto.getFirstName());
         entity.setLastName(dto.getLastName());
         entity.setEmail(dto.getEmail());
+        entity.setPhone(dto.getPhone());
+        entity.setCpf(dto.getCpf());
+        entity.setBirthDay(dto.getBirthDay());
+
 
         entity.getRoles().clear();
         for (RoleDto roleDto : dto.getRoles()) {
             Role role = roleRepository.getReferenceById(roleDto.getId());
             entity.getRoles().add(role);
         }
+
 //        entity.getAddressList().clear();
 //        for (AddressDto p : dto.getAddressList()) {
 //            Address address = addressRepository.getReferenceById(p.getId());

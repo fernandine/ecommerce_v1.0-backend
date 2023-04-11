@@ -1,35 +1,57 @@
 package com.ecommerce.udemy.entities;
-import lombok.*;
+
+import com.ecommerce.udemy.entities.PK.OrderItemPK;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Entity
-@Table(name="order_item")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class OrderItem implements Serializable {
+@Table(name = "tb_order_item")
+public class OrderItem {
+    @EmbeddedId
+    private OrderItemPK id = new OrderItemPK();
+    private Integer quantity;
+    private Double price;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private Long id;
+    public OrderItem() {
+    }
 
-    @Column(name="image_url")
-    private String imageUrl;
+    public OrderItem(Order order, Product product, Integer quantity, Double price) {
+        id.setOrder(order);
+        id.setProduct(product);
+        this.quantity = quantity;
+        this.price = price;
+    }
 
-    @Column(name="unit_price")
-    private BigDecimal unitPrice;
+    public Order getOrder() {
+        return id.getOrder();
+    }
 
-    private int quantity;
+    public void setOrder(Order order) {
+        id.setOrder(order);
+    }
 
-    @Column(name="product_id")
-    private Long productId;
+    public Product getProduct() {
+        return id.getProduct();
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    public void setProduct(Product product) {
+        id.setProduct(product);
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
 }

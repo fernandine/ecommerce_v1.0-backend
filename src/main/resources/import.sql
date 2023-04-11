@@ -2,8 +2,8 @@
 -- Users and Roles
 -- -------------------------------------------
 
-INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Alex', 'Brown', 'alex@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
-INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Maria', 'Green', 'maria@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (first_name, last_name, cpf, birth_day, phone, email, password) VALUES ('Alex', 'Brown', '12345678', '2006-12-05', '31971734658', 'alex@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (first_name, last_name, cpf, birth_day, phone, email, password) VALUES ('Maria', 'Green', '87654321', '2020-02-05', '31978455484', 'maria@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_USER');
 INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
@@ -167,3 +167,24 @@ INSERT INTO state(name,country_id) VALUES ('Sinop',5),('Sivas',5),('Şanlıurfa'
 -- -----------------------------------------------------
 INSERT INTO tb_address(cep,logradouro,complemento,bairro,localidade,uf, user_id) VALUES ('34001090','Rua Levy Firmino Alves', 'casa A', 'Parque Santo Antônio', 'Nova Lima', 'MG',2);
 INSERT INTO tb_address(cep,logradouro,complemento,bairro,localidade,uf, user_id) VALUES ('34012-856','Rua Seis', 'casa B', 'Santa Rita', 'Nova Lima', 'MG',1);
+
+-- -----------------------------------------------------
+-- Orders
+-- -----------------------------------------------------
+INSERT INTO tb_order (moment, status, client_id) VALUES (TIMESTAMP WITH TIME ZONE '2022-07-25T13:00:00Z', 1, 1);
+INSERT INTO tb_order (moment, status, client_id) VALUES (TIMESTAMP WITH TIME ZONE '2022-07-29T15:50:00Z', 3, 2);
+INSERT INTO tb_order (moment, status, client_id) VALUES (TIMESTAMP WITH TIME ZONE '2022-08-03T14:20:00Z', 0, 1);
+
+-- -----------------------------------------------------
+-- Order Item
+-- -----------------------------------------------------
+INSERT INTO tb_order_item (order_id, product_id, quantity, price) VALUES (1, 1, 2, 90.5);
+INSERT INTO tb_order_item (order_id, product_id, quantity, price) VALUES (1, 3, 1, 1250.0);
+INSERT INTO tb_order_item (order_id, product_id, quantity, price) VALUES (2, 3, 1, 1250.0);
+INSERT INTO tb_order_item (order_id, product_id, quantity, price) VALUES (3, 1, 1, 90.5);
+
+-- -----------------------------------------------------
+-- Payment moment
+-- -----------------------------------------------------
+INSERT INTO tb_payment (order_id, moment) VALUES (1, TIMESTAMP WITH TIME ZONE '2022-07-25T15:00:00Z');
+INSERT INTO tb_payment (order_id, moment) VALUES (2, TIMESTAMP WITH TIME ZONE '2022-07-30T11:00:00Z');

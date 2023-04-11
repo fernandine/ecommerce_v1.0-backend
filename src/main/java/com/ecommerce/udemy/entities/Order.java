@@ -1,70 +1,101 @@
 package com.ecommerce.udemy.entities;
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import com.ecommerce.udemy.entities.enums.StatusOrder;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.Instant;
+import java.util.*;
 
 @Entity
-@Table(name = "orders")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(name = "tb_order")
 public class Order implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(name="order_tracking_number")
-    private String orderTrackingNumber;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+        @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+        private Instant moment;
+        private StatusOrder status;
 
-    @Column(name="total_quantity")
-    private int totalQuantity;
+        @ManyToOne
+        @JoinColumn(name = "client_id")
+        private User client;
 
-    @Column(name="total_price")
-    private BigDecimal totalPrice;
+        @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+        private Payment payment;
 
-    private String status;
+        @OneToMany(mappedBy = "id.order")
+        private Set<OrderItem> items = new HashSet<>();
 
-    @Column(name="date_created")
-    @CreationTimestamp
-    private Date dateCreated;
+        public Order(){
+        }
 
-    @Column(name="last_updated")
-    @UpdateTimestamp
-    private Date lastUpdated;
+        public Order(Long id, Instant moment, StatusOrder status, User client, Payment payment) {
+            this.id = id;
+            this.moment = moment;
+            this.status = status;
+            this.client = client;
+            this.payment = payment;
+        }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-    private Set<OrderItem> orderItems = new HashSet<>();
+        public Long getId() {
+            return id;
+        }
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+        public void setId(Long id) {
+            this.id = id;
+        }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
-    private Address shippingAddress;
+        public Instant getMoment() {
+            return moment;
+        }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "billing_address_id", referencedColumnName = "id")
-    private Address billingAddress;
+        public void setMoment(Instant moment) {
+            this.moment = moment;
+        }
 
-    public void add(OrderItem item) {
+        public StatusOrder getStatus() {
+            return status;
+        }
 
-        if (item != null) {
-            if (orderItems == null) {
-                orderItems = new HashSet<>();
-            }
+        public void setStatus(StatusOrder status) {
+            this.status = status;
+        }
 
-            orderItems.add(item);
-            item.setOrder(this);
+        public User getClient() {
+            return client;
+        }
+
+        public void setClient(User client) {
+            this.client = client;
+        }
+
+        public Payment getPayment() {
+            return payment;
+        }
+
+        public void setPayment(Payment payment) {
+            this.payment = payment;
+        }
+
+        public Set<OrderItem> getItems() {
+            return items;
+        }
+
+        public List<Product> getProducts() {
+            return items.stream().map(OrderItem::getProduct).toList();
+        }
+
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Order order)) return false;
+            return Objects.equals(id, order.id);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(id);
         }
     }
-}

@@ -1,30 +1,27 @@
 package com.ecommerce.udemy.dtos;
 
 import com.ecommerce.udemy.entities.Order;
+import com.ecommerce.udemy.entities.enums.StatusOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
+import java.time.Instant;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDto implements Serializable {
+public class OrderDto {
 
-    private BigDecimal totalPrice;
-    private Integer totalQuantity;
-    private String orderTrackingNumber;
-    private Date dateCreated;
+    private Long id;
+    private Instant moment;
+    private StatusOrder status;
 
     public OrderDto(Order entity) {
-        totalPrice = entity.getTotalPrice();
-        totalQuantity = entity.getTotalQuantity();
-        orderTrackingNumber = entity.getOrderTrackingNumber();
-        dateCreated = entity.getDateCreated();
+        id = entity.getId();
+        moment = entity.getMoment();
+        status = entity.getStatus();
     }
 }

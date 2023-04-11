@@ -34,7 +34,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	private JwtTokenStore tokenStore;
 	
 	private static final String[] USER = {
-			"/cart-details/**",
 			"/products/**",
 			"/categories/**",
 			"/oauth/token",
@@ -42,12 +41,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 			"/register/**",
 			"/users/**",
 			"/account/**",
-			"/adresses/**"
+			"/adresses/**",
+			"/orders/**",
+			"/checkout/**"
 	};
 	
 	//private static final String[] OPERATOR = { };
 	
-	private static final String[] ADMIN = { "/admin/**", "/checkout/**" };
+	private static final String[] ADMIN = { "/admin/**" };
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
