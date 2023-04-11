@@ -30,9 +30,9 @@ public class UserDto implements Serializable {
     private String firstName;
 
     private String lastName;
-    @NotBlank
+
     private String cpf;
-    @NotBlank
+
     private String phone;
 
     @JsonFormat(pattern="dd/MM/yyyy")
